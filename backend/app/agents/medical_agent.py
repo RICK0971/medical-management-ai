@@ -46,8 +46,7 @@ MEDICAL DISCLAIMER: This assistant is for informational purposes only and should
 
 # Initialize the medical agent
 medical_agent = Agent(
-    f'groq:{settings.GROQ_API_KEY}',
-    model='llama-3.1-70b-versatile',
+    model=f'groq:llama-3.1-70b-versatile',
     deps_type=MedicalContext,
     system_prompt=SYSTEM_PROMPT,
     tools=[
