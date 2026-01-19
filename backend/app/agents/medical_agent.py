@@ -3,13 +3,11 @@ Medical AI Agent using Pydantic AI
 """
 
 from pydantic_ai import Agent
-from pydantic import BaseModel
-from typing import List, Optional
-from datetime import datetime
 from loguru import logger
 
 from app.config import settings
 from .tools import (
+    MedicalContext,
     get_medications,
     add_medication,
     get_appointments,
@@ -17,11 +15,6 @@ from .tools import (
     log_health_metric,
     get_health_trends
 )
-
-class MedicalContext(BaseModel):
-    """Context passed to the agent"""
-    user_id: str
-    user_name: str
 
 # System prompt for the medical agent
 SYSTEM_PROMPT = """You are a helpful medical management assistant named MediBot.
