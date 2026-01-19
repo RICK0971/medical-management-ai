@@ -25,12 +25,13 @@ A full-stack AI-powered medical management system built with **Pydantic AI**, **
 
 ## 🚀 Quick Start
 
-**Get running in 5 minutes!** → [QUICKSTART.md](QUICKSTART.md)
+**Get running in 5 minutes with VS Code!** → [QUICKSTART.md](QUICKSTART.md)
 
 ```bash
 # Clone the repository
 git clone https://github.com/RICK0971/medical-management-ai.git
 cd medical-management-ai
+code .  # Open in VS Code
 
 # Backend setup
 cd backend
@@ -52,10 +53,11 @@ npm install
 
 | Document | Description |
 |----------|-------------|
-| **[QUICKSTART.md](QUICKSTART.md)** | 5-minute setup guide |
-| **[INSTALLATION.md](INSTALLATION.md)** | Complete installation guide for Cursor IDE |
+| **[QUICKSTART.md](QUICKSTART.md)** | 5-minute setup guide for VS Code |
+| **[INSTALLATION.md](INSTALLATION.md)** | Complete installation guide for VS Code |
 | **[ARCHITECTURE.md](ARCHITECTURE.md)** | System architecture and design |
 | **[PACKAGES.md](PACKAGES.md)** | Complete package reference |
+| **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** | Common issues and solutions |
 | **[docs/SETUP.md](docs/SETUP.md)** | Detailed setup instructions |
 | **[docs/API.md](docs/API.md)** | API documentation |
 | **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** | Production deployment guide |
@@ -85,8 +87,36 @@ npm install
 - **Python 3.11+** - [Download](https://www.python.org/downloads/)
 - **Node.js 18+** - [Download](https://nodejs.org/)
 - **Git** - [Download](https://git-scm.com/)
+- **VS Code** - [Download](https://code.visualstudio.com/)
 - **Supabase Account** - [Sign up](https://supabase.com/) (free)
 - **Groq API Key** - [Get free key](https://console.groq.com/)
+
+---
+
+## 🎯 VS Code Setup
+
+This project includes VS Code configuration for the best development experience:
+
+### Recommended Extensions
+When you open the project in VS Code, you'll be prompted to install:
+- **Python** (Microsoft) - Python language support
+- **Pylance** (Microsoft) - Python IntelliSense
+- **ESLint** (Microsoft) - JavaScript/TypeScript linting
+- **Prettier** (Prettier) - Code formatting
+- **Tailwind CSS IntelliSense** - Tailwind autocomplete
+- **GitLens** - Git supercharged
+
+### Workspace Settings
+The project includes `.vscode/settings.json` with:
+- Python interpreter configuration
+- Auto-formatting on save
+- Linting enabled
+- Tailwind IntelliSense configuration
+
+### Debug Configurations
+Press `F5` to debug:
+- **Python: FastAPI** - Debug backend with breakpoints
+- **Next.js: debug** - Debug frontend
 
 ---
 
@@ -94,6 +124,11 @@ npm install
 
 ```
 medical-management-ai/
+├── .vscode/                    # VS Code configuration
+│   ├── settings.json          # Workspace settings
+│   ├── extensions.json        # Recommended extensions
+│   └── launch.json            # Debug configurations
+│
 ├── backend/                    # FastAPI backend
 │   ├── app/
 │   │   ├── agents/            # Pydantic AI agents
@@ -133,6 +168,7 @@ medical-management-ai/
 ├── INSTALLATION.md            # Installation guide
 ├── ARCHITECTURE.md            # Architecture docs
 ├── PACKAGES.md                # Package reference
+├── TROUBLESHOOTING.md         # Troubleshooting guide
 └── README.md                  # This file
 ```
 
@@ -228,19 +264,24 @@ npm test
 
 ---
 
-## 🎨 Screenshots
+## 💡 VS Code Tips
 
-### Landing Page
-Clean, modern landing page with feature highlights.
+### Essential Shortcuts
+- **Command Palette:** `Ctrl+Shift+P` (Mac: `Cmd+Shift+P`)
+- **Toggle Terminal:** `` Ctrl+` ``
+- **New Terminal:** `` Ctrl+Shift+` ``
+- **Quick Open:** `Ctrl+P`
+- **Format Document:** `Shift+Alt+F`
 
-### Dashboard
-Overview of medications, appointments, and health metrics.
+### Debugging
+1. Set breakpoints (click left of line number)
+2. Press `F5`
+3. Choose configuration (Python: FastAPI or Next.js)
 
-### AI Chat
-Natural conversation with the medical AI assistant.
-
-### Health Metrics
-Interactive charts showing health trends over time.
+### Split Terminal
+1. Click terminal panel
+2. Click split icon (⊞)
+3. Run backend in one, frontend in other
 
 ---
 
@@ -274,6 +315,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **[Supabase](https://supabase.com/)** - Great backend platform
 - **[Groq](https://groq.com/)** - Fast & free LLM inference
 - **[shadcn/ui](https://ui.shadcn.com/)** - Beautiful components
+- **[VS Code](https://code.visualstudio.com/)** - Best code editor
 
 ---
 
@@ -282,6 +324,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **Documentation:** Check the [docs/](docs/) folder
 - **Issues:** Open an issue on GitHub
 - **Questions:** Review [INSTALLATION.md](INSTALLATION.md) and [QUICKSTART.md](QUICKSTART.md)
+- **Troubleshooting:** See [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 
 ---
 
@@ -332,5 +375,7 @@ If you find this project helpful, please consider giving it a star! ⭐
 ---
 
 **Built with ❤️ for the Full Stack AI Agent Development course**
+
+**Optimized for VS Code** 💻
 
 Repository: [github.com/RICK0971/medical-management-ai](https://github.com/RICK0971/medical-management-ai)
