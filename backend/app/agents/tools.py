@@ -3,12 +3,18 @@ Tools for the medical AI agent
 """
 
 from typing import List, Dict, Any
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from loguru import logger
 from pydantic_ai import RunContext
+from pydantic import BaseModel
 
-from app.agents.medical_agent import MedicalContext
 from app.services.database import supabase
+
+# Define MedicalContext here to avoid circular import
+class MedicalContext(BaseModel):
+    """Context passed to the agent"""
+    user_id: str
+    user_name: str
 
 async def get_medications(ctx: RunContext[MedicalContext]) -> List[Dict[str, Any]]:
     """
@@ -185,5 +191,3 @@ async def get_health_trends(
     except Exception as e:
         logger.error(f"Error fetching health trends: {e}")
         return []
-
-from datetime import timedelta
