@@ -3,10 +3,10 @@ fastapi==0.115.0
 uvicorn[standard]==0.32.0
 python-multipart==0.0.12
 
-# Pydantic AI (using latest compatible versions)
+# Pydantic AI - using versions with pre-built wheels
 pydantic-ai==0.0.14
-pydantic==2.10.3
-pydantic-settings==2.6.1
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
 
 # Database
 sqlalchemy==2.0.36
