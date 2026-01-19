@@ -1,6 +1,6 @@
-# Installation Guide for Cursor IDE
+# Installation Guide for VS Code
 
-Complete step-by-step guide to run this project in Cursor IDE.
+Complete step-by-step guide to run this project in Visual Studio Code.
 
 ## 📋 Prerequisites
 
@@ -50,30 +50,60 @@ brew install git
 sudo apt install git
 ```
 
-### 4. Cursor IDE
-- Download from [cursor.sh](https://cursor.sh/)
+### 4. Visual Studio Code
+- Download from [code.visualstudio.com](https://code.visualstudio.com/)
 - Install and open
 
 ---
 
 ## 🚀 Quick Start (5 Minutes)
 
-### Step 1: Clone in Cursor
+### Step 1: Clone in VS Code
 
-1. Open Cursor IDE
+**Method 1: Using Command Palette**
+1. Open VS Code
 2. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
 3. Type "Git: Clone" and press Enter
 4. Paste: `https://github.com/RICK0971/medical-management-ai.git`
 5. Choose a folder to save the project
 6. Click "Open" when prompted
 
-### Step 2: Open Integrated Terminal
+**Method 2: Using Terminal**
+```bash
+git clone https://github.com/RICK0971/medical-management-ai.git
+cd medical-management-ai
+code .
+```
 
-In Cursor:
+### Step 2: Install VS Code Extensions
+
+VS Code will prompt you to install recommended extensions. Click "Install All" or install manually:
+
+**Required Extensions:**
+1. **Python** (Microsoft) - `ms-python.python`
+2. **Pylance** (Microsoft) - `ms-python.vscode-pylance`
+3. **ESLint** (Microsoft) - `dbaeumer.vscode-eslint`
+4. **Prettier** (Prettier) - `esbenp.prettier-vscode`
+
+**Recommended Extensions:**
+5. **Tailwind CSS IntelliSense** - `bradlc.vscode-tailwindcss`
+6. **GitLens** - `eamodio.gitlens`
+7. **Thunder Client** - `rangav.vscode-thunder-client` (API testing)
+8. **Error Lens** - `usernamehw.errorlens`
+
+**Install via Command Palette:**
+```
+Ctrl+Shift+P → Extensions: Install Extensions
+```
+
+### Step 3: Open Integrated Terminal
+
+In VS Code:
 - Press `` Ctrl+` `` (backtick) to open terminal
 - Or go to Terminal → New Terminal
+- Or View → Terminal
 
-### Step 3: Backend Setup
+### Step 4: Backend Setup
 
 ```bash
 # Navigate to backend
@@ -83,8 +113,11 @@ cd backend
 python -m venv venv
 
 # Activate virtual environment
-# On Windows:
+# On Windows (Command Prompt):
 venv\Scripts\activate
+
+# On Windows (PowerShell):
+venv\Scripts\Activate.ps1
 
 # On macOS/Linux:
 source venv/bin/activate
@@ -98,7 +131,12 @@ pip install -r requirements.txt
 Successfully installed fastapi-0.109.0 uvicorn-0.27.0 pydantic-ai-0.0.14 ...
 ```
 
-### Step 4: Set Up Supabase (Free Database)
+**VS Code Python Interpreter:**
+1. Press `Ctrl+Shift+P`
+2. Type "Python: Select Interpreter"
+3. Choose the one in `./backend/venv/...`
+
+### Step 5: Set Up Supabase (Free Database)
 
 1. Go to [supabase.com](https://supabase.com/)
 2. Click "Start your project"
@@ -120,13 +158,13 @@ Successfully installed fastapi-0.109.0 uvicorn-0.27.0 pydantic-ai-0.0.14 ...
 
 **Set up database tables:**
 1. Click "SQL Editor" in sidebar
-2. Open `database/schema.sql` from the project in Cursor
-3. Copy all the SQL code
+2. In VS Code, open `database/schema.sql`
+3. Copy all the SQL code (`Ctrl+A`, `Ctrl+C`)
 4. Paste into Supabase SQL Editor
 5. Click "Run"
 6. You should see "Success. No rows returned"
 
-### Step 5: Get Groq API Key (Free AI)
+### Step 6: Get Groq API Key (Free AI)
 
 1. Go to [console.groq.com](https://console.groq.com/)
 2. Sign up (free)
@@ -135,16 +173,15 @@ Successfully installed fastapi-0.109.0 uvicorn-0.27.0 pydantic-ai-0.0.14 ...
 5. Name it "medical-ai"
 6. Copy the key (starts with `gsk_...`)
 
-### Step 6: Configure Backend Environment
+### Step 7: Configure Backend Environment
 
-In Cursor, open `backend/.env.example`:
+In VS Code:
 
-1. Right-click `backend/.env.example`
-2. Click "Copy"
-3. Right-click `backend` folder
-4. Click "Paste"
-5. Rename the copy to `.env`
-6. Open `.env` and fill in:
+1. Open `backend/.env.example`
+2. Press `Ctrl+Shift+P`
+3. Type "File: Save As"
+4. Save as `backend/.env`
+5. Fill in your credentials:
 
 ```env
 # Paste your Supabase credentials
@@ -166,7 +203,7 @@ DEBUG=True
 ALLOWED_ORIGINS=http://localhost:3000
 ```
 
-### Step 7: Run Backend
+### Step 8: Run Backend
 
 In terminal (make sure you're in `backend` folder with venv activated):
 
@@ -187,11 +224,12 @@ INFO:     Application startup complete.
 
 You should see the API documentation!
 
-### Step 8: Frontend Setup (New Terminal)
+### Step 9: Frontend Setup (New Terminal)
 
-**Open a NEW terminal** (keep backend running):
+**Open a NEW terminal in VS Code:**
 - Click the `+` icon in terminal panel
 - Or press `` Ctrl+Shift+` ``
+- Or Terminal → New Terminal
 
 ```bash
 # Navigate to frontend
@@ -206,9 +244,9 @@ npm install
 added 345 packages in 2m
 ```
 
-### Step 9: Configure Frontend Environment
+### Step 10: Configure Frontend Environment
 
-1. Copy `frontend/.env.local.example` to `frontend/.env.local`
+1. In VS Code, copy `frontend/.env.local.example` to `frontend/.env.local`
 2. Open `.env.local`
 3. It should contain:
 
@@ -218,7 +256,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 
 (This is already correct for local development!)
 
-### Step 10: Run Frontend
+### Step 11: Run Frontend
 
 In the frontend terminal:
 
@@ -293,37 +331,85 @@ recharts@2.10.4              # Charts
 
 ---
 
-## 🔧 Cursor IDE Tips
+## 🔧 VS Code Tips & Shortcuts
 
-### Recommended Extensions
+### Essential Shortcuts
 
-1. **Python** (Microsoft)
-   - Press `Ctrl+Shift+X`
-   - Search "Python"
-   - Install
+| Action | Windows/Linux | macOS |
+|--------|--------------|-------|
+| Command Palette | `Ctrl+Shift+P` | `Cmd+Shift+P` |
+| Quick Open File | `Ctrl+P` | `Cmd+P` |
+| Toggle Terminal | `` Ctrl+` `` | `` Cmd+` `` |
+| New Terminal | `` Ctrl+Shift+` `` | `` Cmd+Shift+` `` |
+| Toggle Sidebar | `Ctrl+B` | `Cmd+B` |
+| Split Editor | `Ctrl+\` | `Cmd+\` |
+| Go to Definition | `F12` | `F12` |
+| Format Document | `Shift+Alt+F` | `Shift+Option+F` |
+| Save All | `Ctrl+K S` | `Cmd+K S` |
 
-2. **Pylance** (Microsoft)
-   - Better Python IntelliSense
+### Terminal Management
 
-3. **ESLint** (Microsoft)
-   - JavaScript/TypeScript linting
-
-4. **Tailwind CSS IntelliSense**
-   - Autocomplete for Tailwind classes
-
-### Useful Shortcuts
-
-- `Ctrl+` ` ` - Toggle terminal
-- `Ctrl+Shift+P` - Command palette
-- `Ctrl+P` - Quick file open
-- `Ctrl+B` - Toggle sidebar
-- `F5` - Start debugging
-
-### Split Terminal
-
+**Split Terminal:**
 1. Click terminal panel
-2. Click split icon (⊞)
+2. Click split icon (⊞) in top-right
 3. Run backend in one, frontend in other
+
+**Switch Between Terminals:**
+- Click dropdown in terminal panel
+- Or use `Ctrl+Shift+5` to cycle
+
+**Kill Terminal:**
+- Click trash icon
+- Or type `exit`
+
+### Python in VS Code
+
+**Select Python Interpreter:**
+```
+Ctrl+Shift+P → Python: Select Interpreter
+→ Choose ./backend/venv/...
+```
+
+**Run Python File:**
+- Click ▶️ button in top-right
+- Or press `F5`
+
+**Python Debugging:**
+1. Set breakpoint (click left of line number)
+2. Press `F5`
+3. Choose "Python File"
+
+### JavaScript/TypeScript in VS Code
+
+**Format on Save:**
+1. `Ctrl+Shift+P` → "Preferences: Open Settings (JSON)"
+2. Add:
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+```
+
+**Auto Import:**
+- Type component name
+- Press `Ctrl+Space`
+- Select from suggestions
+
+### Git in VS Code
+
+**Source Control Panel:**
+- Click Source Control icon (left sidebar)
+- Or press `Ctrl+Shift+G`
+
+**Commit Changes:**
+1. Stage files (click `+`)
+2. Write commit message
+3. Click ✓ or press `Ctrl+Enter`
+
+**View Git History:**
+- Install GitLens extension
+- Click file → View File History
 
 ---
 
@@ -345,7 +431,7 @@ python3 -m venv venv
 python -m pip install -r requirements.txt
 ```
 
-### Issue: "Cannot activate venv on Windows"
+### Issue: Cannot activate venv on Windows PowerShell
 
 **Fix:**
 ```powershell
@@ -353,20 +439,12 @@ python -m pip install -r requirements.txt
 Set-ExecutionPolicy RemoteSigned
 
 # Then try again
-venv\Scripts\activate
+venv\Scripts\Activate.ps1
 ```
 
-### Issue: "Port 8000 already in use"
-
-**Fix:**
-```bash
-# Kill the process
-# Windows:
-netstat -ano | findstr :8000
-taskkill /PID <PID> /F
-
-# macOS/Linux:
-lsof -ti:8000 | xargs kill -9
+**Or use Command Prompt instead:**
+```cmd
+venv\Scripts\activate
 ```
 
 ### Issue: "Module not found" in Python
@@ -374,6 +452,9 @@ lsof -ti:8000 | xargs kill -9
 **Fix:**
 ```bash
 # Make sure venv is activated (you should see (venv) in terminal)
+# Check Python interpreter in VS Code
+Ctrl+Shift+P → Python: Select Interpreter → Choose venv
+
 # Reinstall packages
 pip install -r requirements.txt
 ```
@@ -388,24 +469,148 @@ rm -rf node_modules package-lock.json
 npm install
 ```
 
-### Issue: "Supabase connection error"
+### Issue: Port already in use
 
 **Fix:**
-- Check your `.env` file
-- Make sure no extra spaces in credentials
-- Verify Supabase project is active
-- Check you ran the schema.sql
+```bash
+# Kill the process
+# Windows:
+netstat -ano | findstr :8000
+taskkill /PID <PID> /F
 
-### Issue: "Groq API error"
+# macOS/Linux:
+lsof -ti:8000 | xargs kill -9
+```
+
+### Issue: VS Code not recognizing imports
 
 **Fix:**
-- Verify API key is correct
-- Check you have free credits
-- Try generating a new key
+1. Reload VS Code: `Ctrl+Shift+P` → "Developer: Reload Window"
+2. Check Python interpreter is selected
+3. Check TypeScript version: `Ctrl+Shift+P` → "TypeScript: Select TypeScript Version"
 
 ---
 
-## 🎯 Next Steps
+## 🎯 VS Code Workspace Settings
+
+Create `.vscode/settings.json` in project root:
+
+```json
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/backend/venv/bin/python",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.pytest_cache": true,
+    "**/node_modules": true,
+    "**/.next": true
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+```
+
+---
+
+## 🚀 Development Workflow in VS Code
+
+### Daily Development:
+
+**Terminal 1 (Backend):**
+```bash
+cd backend
+source venv/bin/activate  # Windows: venv\Scripts\activate
+uvicorn main:app --reload
+```
+
+**Terminal 2 (Frontend):**
+```bash
+cd frontend
+npm run dev
+```
+
+### Making Changes:
+
+1. **Backend changes:**
+   - Edit files in `backend/app/`
+   - Server auto-reloads
+   - Check terminal for errors
+   - Test at `http://localhost:8000/docs`
+
+2. **Frontend changes:**
+   - Edit files in `frontend/app/` or `frontend/components/`
+   - Browser auto-refreshes
+   - Check browser console (F12) for errors
+
+### Debugging:
+
+**Backend (Python):**
+1. Create `.vscode/launch.json`:
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: FastAPI",
+      "type": "python",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "main:app",
+        "--reload"
+      ],
+      "cwd": "${workspaceFolder}/backend",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/backend"
+      }
+    }
+  ]
+}
+```
+2. Set breakpoints
+3. Press `F5`
+
+**Frontend (Next.js):**
+1. Add to `.vscode/launch.json`:
+```json
+{
+  "name": "Next.js: debug",
+  "type": "node",
+  "request": "launch",
+  "runtimeExecutable": "npm",
+  "runtimeArgs": ["run", "dev"],
+  "cwd": "${workspaceFolder}/frontend",
+  "port": 9229
+}
+```
+2. Press `F5`
+
+### Stopping Servers:
+
+- Press `Ctrl+C` in each terminal
+- Or click trash icon in terminal panel
+
+---
+
+## 📚 Next Steps
 
 1. **Read the docs:**
    - `docs/SETUP.md` - Detailed setup
@@ -424,38 +629,29 @@ npm install
 
 ---
 
-## 💡 Development Workflow
+## 💡 VS Code Extensions for Better Development
 
-### Daily Development:
+### Python Development
+- **Python** - Essential
+- **Pylance** - IntelliSense
+- **Python Indent** - Auto-indentation
+- **autoDocstring** - Generate docstrings
+- **Python Test Explorer** - Run tests
 
-**Terminal 1 (Backend):**
-```bash
-cd backend
-source venv/bin/activate  # or venv\Scripts\activate
-uvicorn main:app --reload
-```
+### JavaScript/TypeScript
+- **ESLint** - Linting
+- **Prettier** - Code formatting
+- **Auto Rename Tag** - Rename HTML tags
+- **Path Intellisense** - Autocomplete paths
+- **Import Cost** - Show import sizes
 
-**Terminal 2 (Frontend):**
-```bash
-cd frontend
-npm run dev
-```
-
-### Making Changes:
-
-1. **Backend changes:**
-   - Edit files in `backend/app/`
-   - Server auto-reloads
-   - Check terminal for errors
-
-2. **Frontend changes:**
-   - Edit files in `frontend/app/`
-   - Browser auto-refreshes
-   - Check browser console for errors
-
-### Stopping Servers:
-
-- Press `Ctrl+C` in each terminal
+### General
+- **GitLens** - Git supercharged
+- **Thunder Client** - API testing
+- **Error Lens** - Inline errors
+- **Todo Tree** - Track TODOs
+- **Better Comments** - Colorful comments
+- **Bracket Pair Colorizer** - Colorful brackets
 
 ---
 
@@ -466,6 +662,7 @@ npm run dev
 3. Check `docs/SETUP.md` for detailed troubleshooting
 4. Review API docs at `http://localhost:8000/docs`
 5. Check Supabase logs in dashboard
+6. See `TROUBLESHOOTING.md` for common issues
 
 ---
 
@@ -476,7 +673,8 @@ Before you start developing, verify:
 - [ ] Python 3.11+ installed (`python --version`)
 - [ ] Node.js 18+ installed (`node --version`)
 - [ ] Git installed (`git --version`)
-- [ ] Cursor IDE installed and opened
+- [ ] VS Code installed and opened
+- [ ] Required extensions installed
 - [ ] Project cloned successfully
 - [ ] Backend venv created and activated
 - [ ] Backend packages installed
@@ -490,3 +688,7 @@ Before you start developing, verify:
 - [ ] Can sign up and login
 
 If all checked ✅, you're ready to develop!
+
+---
+
+**Happy coding in VS Code! 🎉**
