@@ -5,9 +5,12 @@ A full-stack AI-powered medical management system built with **Pydantic AI**, **
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109-green.svg)](https://fastapi.tiangolo.com/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black.svg)](https://nextjs.org/)
+[![VS Code](https://img.shields.io/badge/VS%20Code-Optimized-007ACC.svg)](https://code.visualstudio.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **Built for Full Stack AI Agent Development Course**
+> 
+> **Optimized for Visual Studio Code** 💻
 
 ---
 
@@ -51,10 +54,17 @@ npm install
 
 ## 📚 Documentation
 
+### Getting Started
 | Document | Description |
 |----------|-------------|
 | **[QUICKSTART.md](QUICKSTART.md)** | 5-minute setup guide for VS Code |
 | **[INSTALLATION.md](INSTALLATION.md)** | Complete installation guide for VS Code |
+| **[VSCODE_GUIDE.md](VSCODE_GUIDE.md)** | Comprehensive VS Code developer guide |
+| **[VSCODE_QUICKREF.md](VSCODE_QUICKREF.md)** | VS Code shortcuts quick reference |
+
+### Technical Documentation
+| Document | Description |
+|----------|-------------|
 | **[ARCHITECTURE.md](ARCHITECTURE.md)** | System architecture and design |
 | **[PACKAGES.md](PACKAGES.md)** | Complete package reference |
 | **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** | Common issues and solutions |
@@ -95,28 +105,35 @@ npm install
 
 ## 🎯 VS Code Setup
 
-This project includes VS Code configuration for the best development experience:
+This project is **optimized for Visual Studio Code** with pre-configured settings.
+
+### Automatic Setup
+When you open the project in VS Code:
+1. ✅ Recommended extensions prompt appears
+2. ✅ Python interpreter auto-detected
+3. ✅ Workspace settings applied
+4. ✅ Debug configurations ready
 
 ### Recommended Extensions
-When you open the project in VS Code, you'll be prompted to install:
+The project will prompt you to install:
 - **Python** (Microsoft) - Python language support
 - **Pylance** (Microsoft) - Python IntelliSense
 - **ESLint** (Microsoft) - JavaScript/TypeScript linting
 - **Prettier** (Prettier) - Code formatting
 - **Tailwind CSS IntelliSense** - Tailwind autocomplete
 - **GitLens** - Git supercharged
+- **Thunder Client** - API testing
+- **Error Lens** - Inline errors
 
-### Workspace Settings
-The project includes `.vscode/settings.json` with:
-- Python interpreter configuration
-- Auto-formatting on save
-- Linting enabled
-- Tailwind IntelliSense configuration
+### Pre-configured Features
+- ✅ Auto-formatting on save
+- ✅ Python linting enabled
+- ✅ Import organization
+- ✅ Tailwind IntelliSense
+- ✅ Debug configurations
+- ✅ File exclusions
 
-### Debug Configurations
-Press `F5` to debug:
-- **Python: FastAPI** - Debug backend with breakpoints
-- **Next.js: debug** - Debug frontend
+**Learn more:** [VSCODE_GUIDE.md](VSCODE_GUIDE.md)
 
 ---
 
@@ -132,40 +149,23 @@ medical-management-ai/
 ├── backend/                    # FastAPI backend
 │   ├── app/
 │   │   ├── agents/            # Pydantic AI agents
-│   │   │   ├── medical_agent.py
-│   │   │   └── tools.py
 │   │   ├── api/               # API routes
-│   │   │   ├── auth.py
-│   │   │   ├── medications.py
-│   │   │   ├── appointments.py
-│   │   │   ├── health_metrics.py
-│   │   │   └── chat.py
 │   │   ├── models/            # Pydantic models
-│   │   ├── services/          # Business logic
-│   │   └── config.py
-│   ├── main.py
-│   └── requirements.txt
+│   │   └── services/          # Business logic
+│   └── main.py
 │
 ├── frontend/                   # Next.js frontend
 │   ├── app/                   # App router pages
-│   │   ├── (auth)/           # Auth pages
-│   │   ├── (dashboard)/      # Dashboard pages
-│   │   ├── layout.tsx
-│   │   └── page.tsx
 │   ├── components/            # React components
-│   ├── lib/                   # Utilities
-│   └── package.json
+│   └── lib/                   # Utilities
 │
 ├── database/                   # Database schema
-│   └── schema.sql
-│
 ├── docs/                       # Documentation
-│   ├── SETUP.md
-│   ├── API.md
-│   └── DEPLOYMENT.md
 │
 ├── QUICKSTART.md              # Quick start guide
 ├── INSTALLATION.md            # Installation guide
+├── VSCODE_GUIDE.md            # VS Code developer guide
+├── VSCODE_QUICKREF.md         # VS Code quick reference
 ├── ARCHITECTURE.md            # Architecture docs
 ├── PACKAGES.md                # Package reference
 ├── TROUBLESHOOTING.md         # Troubleshooting guide
@@ -269,7 +269,6 @@ npm test
 ### Essential Shortcuts
 - **Command Palette:** `Ctrl+Shift+P` (Mac: `Cmd+Shift+P`)
 - **Toggle Terminal:** `` Ctrl+` ``
-- **New Terminal:** `` Ctrl+Shift+` ``
 - **Quick Open:** `Ctrl+P`
 - **Format Document:** `Shift+Alt+F`
 
@@ -282,6 +281,9 @@ npm test
 1. Click terminal panel
 2. Click split icon (⊞)
 3. Run backend in one, frontend in other
+
+**Full guide:** [VSCODE_GUIDE.md](VSCODE_GUIDE.md)  
+**Quick reference:** [VSCODE_QUICKREF.md](VSCODE_QUICKREF.md)
 
 ---
 
@@ -325,6 +327,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **Issues:** Open an issue on GitHub
 - **Questions:** Review [INSTALLATION.md](INSTALLATION.md) and [QUICKSTART.md](QUICKSTART.md)
 - **Troubleshooting:** See [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- **VS Code Help:** See [VSCODE_GUIDE.md](VSCODE_GUIDE.md)
 
 ---
 
@@ -341,6 +344,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ### Next.js
 - [Learn Next.js](https://nextjs.org/learn)
 - [App Router Docs](https://nextjs.org/docs/app)
+
+### VS Code
+- [Python in VS Code](https://code.visualstudio.com/docs/python)
+- [JavaScript in VS Code](https://code.visualstudio.com/docs/languages/javascript)
 
 ---
 
@@ -365,6 +372,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **API Endpoints:** 20+
 - **AI Tools:** 6 agent tools
 - **Dependencies:** 40+ packages
+- **Documentation:** 10+ guides
 
 ---
 
@@ -376,6 +384,6 @@ If you find this project helpful, please consider giving it a star! ⭐
 
 **Built with ❤️ for the Full Stack AI Agent Development course**
 
-**Optimized for VS Code** 💻
+**Optimized for Visual Studio Code** 💻
 
 Repository: [github.com/RICK0971/medical-management-ai](https://github.com/RICK0971/medical-management-ai)
