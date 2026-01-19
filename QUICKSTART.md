@@ -1,6 +1,6 @@
 # 🚀 Quick Start Guide
 
-Get the Medical Management AI running in **5 minutes**!
+Get the Medical Management AI running in **5 minutes** using VS Code!
 
 ## ⚡ Prerequisites (2 minutes)
 
@@ -8,17 +8,42 @@ Install these first:
 - **Python 3.11+** → [python.org/downloads](https://www.python.org/downloads/)
 - **Node.js 18+** → [nodejs.org](https://nodejs.org/)
 - **Git** → [git-scm.com](https://git-scm.com/)
+- **VS Code** → [code.visualstudio.com](https://code.visualstudio.com/)
 
 ## 📥 Step 1: Clone & Open (30 seconds)
 
+**Option 1: Using VS Code**
+1. Open VS Code
+2. Press `Ctrl+Shift+P` (Mac: `Cmd+Shift+P`)
+3. Type "Git: Clone"
+4. Paste: `https://github.com/RICK0971/medical-management-ai.git`
+5. Choose folder → Click "Open"
+
+**Option 2: Using Terminal**
 ```bash
 git clone https://github.com/RICK0971/medical-management-ai.git
 cd medical-management-ai
+code .
 ```
 
-Open in your favorite IDE (VS Code, Cursor, etc.)
+## 🔌 Step 1.5: Install VS Code Extensions (30 seconds)
+
+When VS Code opens, install these extensions:
+
+**Required:**
+- **Python** (Microsoft)
+- **Pylance** (Microsoft)
+- **ESLint** (Microsoft)
+
+**Recommended:**
+- **Tailwind CSS IntelliSense**
+- **Prettier**
+
+Press `Ctrl+Shift+X` to open Extensions panel.
 
 ## 🔧 Step 2: Backend Setup (2 minutes)
+
+Open terminal in VS Code (`` Ctrl+` ``):
 
 ```bash
 cd backend
@@ -26,8 +51,11 @@ cd backend
 # Create & activate virtual environment
 python -m venv venv
 
-# Windows:
+# Windows (Command Prompt):
 venv\Scripts\activate
+
+# Windows (PowerShell):
+venv\Scripts\Activate.ps1
 
 # macOS/Linux:
 source venv/bin/activate
@@ -35,6 +63,11 @@ source venv/bin/activate
 # Install packages
 pip install -r requirements.txt
 ```
+
+**Set Python Interpreter in VS Code:**
+1. Press `Ctrl+Shift+P`
+2. Type "Python: Select Interpreter"
+3. Choose `./backend/venv/...`
 
 ## 🗄️ Step 3: Database Setup (1 minute)
 
@@ -51,7 +84,9 @@ pip install -r requirements.txt
 
 ## ⚙️ Step 5: Configure Backend (30 seconds)
 
-Copy `backend/.env.example` to `backend/.env` and fill in:
+In VS Code:
+1. Copy `backend/.env.example` to `backend/.env`
+2. Fill in:
 
 ```env
 SUPABASE_URL=https://xxxxx.supabase.co
@@ -64,8 +99,9 @@ ALLOWED_ORIGINS=http://localhost:3000
 
 ## ▶️ Step 6: Run Backend (10 seconds)
 
+In terminal (backend folder, venv activated):
+
 ```bash
-# In backend folder with venv activated
 uvicorn main:app --reload
 ```
 
@@ -73,7 +109,9 @@ uvicorn main:app --reload
 
 ## 🎨 Step 7: Frontend Setup (1 minute)
 
-**Open NEW terminal:**
+**Open NEW terminal in VS Code:**
+- Click `+` icon in terminal panel
+- Or press `` Ctrl+Shift+` ``
 
 ```bash
 cd frontend
@@ -121,6 +159,7 @@ You should see:
 ### Backend won't start
 ```bash
 # Make sure venv is activated (you should see (venv) in terminal)
+# Check Python interpreter: Ctrl+Shift+P → Python: Select Interpreter
 # Reinstall packages
 pip install -r requirements.txt
 ```
@@ -144,36 +183,21 @@ npm install
 
 ---
 
-## 💡 Development Tips
+## 💡 VS Code Tips
 
-**Two terminals:**
-1. Backend: `cd backend && uvicorn main:app --reload`
-2. Frontend: `cd frontend && npm run dev`
+**Split Terminal:**
+1. Click terminal panel
+2. Click split icon (⊞)
+3. Run backend in one, frontend in other
 
-**Stop servers:**
+**Keyboard Shortcuts:**
+- Toggle Terminal: `` Ctrl+` ``
+- New Terminal: `` Ctrl+Shift+` ``
+- Command Palette: `Ctrl+Shift+P`
+- Quick Open: `Ctrl+P`
+
+**Stop Servers:**
 - Press `Ctrl+C` in each terminal
-
-**View logs:**
-- Backend: Check terminal output
-- Frontend: Check browser console (F12)
-
----
-
-## 📦 What's Installed?
-
-### Backend (Python)
-- FastAPI - Web framework
-- Pydantic AI - AI agent system
-- Supabase - Database client
-- Groq - LLM provider
-- JWT - Authentication
-
-### Frontend (Node.js)
-- Next.js 14 - React framework
-- Tailwind CSS - Styling
-- shadcn/ui - Components
-- Axios - HTTP client
-- Recharts - Charts
 
 ---
 
@@ -222,8 +246,8 @@ See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for details.
 1. Check error messages in terminal
 2. Review [INSTALLATION.md](INSTALLATION.md)
 3. Check API docs at `localhost:8000/docs`
-4. Review [ARCHITECTURE.md](ARCHITECTURE.md)
+4. See [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 
 ---
 
-**Happy coding! 🎉**
+**Happy coding with VS Code! 🎉**
