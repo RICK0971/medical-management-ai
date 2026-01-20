@@ -6,12 +6,23 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List
 from loguru import logger
 import uuid
+from datetime import date, time, datetime
 
 from app.models.appointment import Appointment, AppointmentCreate, AppointmentUpdate
 from app.services.auth_service import get_current_user
 from app.services.database import supabase
 
 router = APIRouter()
+
+def serialize_dates(data: dict) -> dict:
+    """Convert date/time objects to ISO format strings"""
+    serialized = data.copy()
+    for key, value in serialized.items():
+        if isinstance(value, (date, datetime)):
+            serialized[key] = value.isoformat()
+        elif isinstance(value, time):
+            serialized[key] = value.isoformat()
+    return serialized
 
 @router.get("/", response_model=List[Appointment])
 async def get_appointments(
@@ -21,7 +32,7 @@ async def get_appointments(
     try:
         response = supabase.table('appointments').select('*').eq(
             'user_id', current_user['id']
-        ).order('date_time', desc=False).execute()
+        ).order('date', desc=False).execute()
         
         return response.data if response.data else []
         
@@ -39,10 +50,13 @@ async def create_appointment(
 ):
     """Create a new appointment"""
     try:
+        appointment_dict = appointment.dict()
+        
+        # Convert dates/times to ISO strings
         appointment_data = {
             'id': str(uuid.uuid4()),
             'user_id': current_user['id'],
-            **appointment.dict(),
+            **serialize_dates(appointment_dict),
             'status': 'scheduled'
         }
         
@@ -62,7 +76,7 @@ async def create_appointment(
         logger.error(f"Error creating appointment: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to create appointment"
+            detail=f"Failed to create appointment: {str(e)}"
         )
 
 @router.patch("/{appointment_id}", response_model=Appointment)
@@ -84,8 +98,9 @@ async def update_appointment(
                 detail="Appointment not found"
             )
         
-        # Update
-        update_data = appointment_update.dict(exclude_unset=True)
+        # Update with date serialization
+        update_dict = appointment_update.dict(exclude_unset=True)
+        update_data = serialize_dates(update_dict)
         
         response = supabase.table('appointments').update(update_data).eq(
             'id', appointment_id
