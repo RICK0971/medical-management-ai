@@ -44,9 +44,9 @@ When users ask about their medical data, use the appropriate tools to fetch and 
 MEDICAL DISCLAIMER: This assistant is for informational purposes only and should not replace professional medical advice, diagnosis, or treatment. Always consult with a qualified healthcare provider for medical concerns.
 """
 
-# Initialize the medical agent
+# Initialize the medical agent with updated Groq model
 medical_agent = Agent(
-    model=f'groq:llama-3.1-70b-versatile',
+    model='groq:llama-3.3-70b-versatile',  # Updated to current model
     deps_type=MedicalContext,
     system_prompt=SYSTEM_PROMPT,
     tools=[
