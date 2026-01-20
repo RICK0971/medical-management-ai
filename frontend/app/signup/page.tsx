@@ -37,6 +37,11 @@ export default function SignupPage() {
       return;
     }
 
+    if (formData.password.length > 72) {
+      setError('Password cannot be longer than 72 characters');
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -134,9 +139,13 @@ export default function SignupPage() {
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="••••••••"
+                  maxLength={72}
                   required
                 />
               </div>
+              <p className="mt-1 text-xs text-gray-500">
+                Must be 6-72 characters long
+              </p>
             </div>
 
             {/* Confirm Password Field */}
@@ -153,6 +162,7 @@ export default function SignupPage() {
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="••••••••"
+                  maxLength={72}
                   required
                 />
               </div>
