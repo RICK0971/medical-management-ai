@@ -2,7 +2,6 @@
 Authentication service
 """
 
-import hashlib
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
@@ -14,28 +13,16 @@ from loguru import logger
 from app.config import settings
 from app.services.database import supabase
 
-# Password hashing
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Password hashing - using argon2 which has no length limit
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 # HTTP Bearer token
 security = HTTPBearer()
 
-def _prehash_password(password: str) -> str:
-    """
-    Pre-hash password with SHA256 to support passwords longer than 72 bytes.
-    This allows unlimited password length while staying within bcrypt's 72-byte limit.
-    SHA256 always produces a 64-character hex string (32 bytes), well within bcrypt's limit.
-    """
-    prehashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
-    logger.debug(f"Pre-hashed password length: {len(prehashed)} chars, {len(prehashed.encode('utf-8'))} bytes")
-    return prehashed
-
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verify a password against a hash"""
     try:
-        # Pre-hash the password to support any length
-        prehashed = _prehash_password(plain_password)
-        return pwd_context.verify(prehashed, hashed_password)
+        return pwd_context.verify(plain_password, hashed_password)
     except Exception as e:
         logger.error(f"Password verification error: {e}")
         return False
@@ -43,10 +30,8 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 def get_password_hash(password: str) -> str:
     """Hash a password"""
     try:
-        # Pre-hash the password to support any length
-        logger.debug(f"Original password length: {len(password)} chars, {len(password.encode('utf-8'))} bytes")
-        prehashed = _prehash_password(password)
-        hashed = pwd_context.hash(prehashed)
+        logger.debug(f"Hashing password of length: {len(password)} chars")
+        hashed = pwd_context.hash(password)
         logger.debug(f"Successfully hashed password")
         return hashed
     except Exception as e:
