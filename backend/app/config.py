@@ -2,8 +2,13 @@
 Application configuration
 """
 
+import os
+from dotenv import load_dotenv
 from pydantic_settings import BaseSettings
 from typing import List
+
+# Explicitly load .env file
+load_dotenv()
 
 class Settings(BaseSettings):
     # Project
@@ -40,3 +45,7 @@ class Settings(BaseSettings):
         case_sensitive = True
 
 settings = Settings()
+
+# Ensure GROQ_API_KEY is set in environment for Pydantic AI
+if settings.GROQ_API_KEY and not os.getenv('GROQ_API_KEY'):
+    os.environ['GROQ_API_KEY'] = settings.GROQ_API_KEY
