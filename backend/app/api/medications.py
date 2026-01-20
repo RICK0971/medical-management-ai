@@ -6,12 +6,21 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List
 from loguru import logger
 import uuid
+from datetime import date
 
 from app.models.medication import Medication, MedicationCreate, MedicationUpdate
 from app.services.auth_service import get_current_user
 from app.services.database import supabase
 
 router = APIRouter()
+
+def serialize_dates(data: dict) -> dict:
+    """Convert date objects to ISO format strings"""
+    serialized = data.copy()
+    for key, value in serialized.items():
+        if isinstance(value, date):
+            serialized[key] = value.isoformat()
+    return serialized
 
 @router.get("/", response_model=List[Medication])
 async def get_medications(
@@ -43,10 +52,13 @@ async def create_medication(
 ):
     """Create a new medication"""
     try:
+        medication_dict = medication.dict()
+        
+        # Convert dates to ISO strings
         medication_data = {
             'id': str(uuid.uuid4()),
             'user_id': current_user['id'],
-            **medication.dict(),
+            **serialize_dates(medication_dict),
             'active': True
         }
         
@@ -66,7 +78,7 @@ async def create_medication(
         logger.error(f"Error creating medication: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to create medication"
+            detail=f"Failed to create medication: {str(e)}"
         )
 
 @router.get("/{medication_id}", response_model=Medication)
@@ -116,8 +128,9 @@ async def update_medication(
                 detail="Medication not found"
             )
         
-        # Update
-        update_data = medication_update.dict(exclude_unset=True)
+        # Update with date serialization
+        update_dict = medication_update.dict(exclude_unset=True)
+        update_data = serialize_dates(update_dict)
         
         response = supabase.table('medications').update(update_data).eq(
             'id', medication_id
