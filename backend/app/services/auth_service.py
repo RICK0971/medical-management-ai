@@ -9,6 +9,7 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi import HTTPException, status, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from loguru import logger
 
 from app.config import settings
 from app.services.database import supabase
@@ -23,20 +24,37 @@ def _prehash_password(password: str) -> str:
     """
     Pre-hash password with SHA256 to support passwords longer than 72 bytes.
     This allows unlimited password length while staying within bcrypt's 72-byte limit.
+    SHA256 always produces a 64-character hex string (32 bytes), well within bcrypt's limit.
     """
-    return hashlib.sha256(password.encode('utf-8')).hexdigest()
+    prehashed = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    logger.debug(f"Pre-hashed password length: {len(prehashed)} chars, {len(prehashed.encode('utf-8'))} bytes")
+    return prehashed
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verify a password against a hash"""
-    # Pre-hash the password to support any length
-    prehashed = _prehash_password(plain_password)
-    return pwd_context.verify(prehashed, hashed_password)
+    try:
+        # Pre-hash the password to support any length
+        prehashed = _prehash_password(plain_password)
+        return pwd_context.verify(prehashed, hashed_password)
+    except Exception as e:
+        logger.error(f"Password verification error: {e}")
+        return False
 
 def get_password_hash(password: str) -> str:
     """Hash a password"""
-    # Pre-hash the password to support any length
-    prehashed = _prehash_password(password)
-    return pwd_context.hash(prehashed)
+    try:
+        # Pre-hash the password to support any length
+        logger.debug(f"Original password length: {len(password)} chars, {len(password.encode('utf-8'))} bytes")
+        prehashed = _prehash_password(password)
+        hashed = pwd_context.hash(prehashed)
+        logger.debug(f"Successfully hashed password")
+        return hashed
+    except Exception as e:
+        logger.error(f"Password hashing error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to hash password: {str(e)}"
+        )
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     """Create a JWT access token"""
